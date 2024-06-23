@@ -1,5 +1,3 @@
-%%writefile co2_forecasting_app.py
-
 # importing necessary libraries
 import pickle
 import streamlit as st
