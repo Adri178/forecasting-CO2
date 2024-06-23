@@ -1,16 +1,31 @@
+%%writefile co2_forecasting_app.py
+
+# importing necessary libraries
 import pickle
 import streamlit as st
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
+from PIL import Image
+import warnings
+warnings.filterwarnings("ignore")
 
-model = pickle.load(open('prediksi_co2.sav', 'rb'))
+#load the model
+model = pickle.load(open('forecast_model.pickle','rb'))
 
+#load dataset to plot alongside predictions
 df = pd.read_excel("CO2 dataset.xlsx")
 df['Year'] = pd.to_datetime(df['Year'], format='%Y')
 df.set_index(['Year'], inplace=True)
 
-st.title('Forecasting CO2')
-year = st.slider("Tentukan Tahun",1,30,step = 1)
+
+#page configuration
+st.set_page_config(layout='centered')
+image = Image.open('/content/Add a heading.jpg')
+st.image(image)
+
+year = st.slider("Select number of Years",1,30,step = 1)
+
 
 pred = model.forecast(year)
 pred = pd.DataFrame(pred, columns=['CO2'])
