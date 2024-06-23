@@ -19,8 +19,7 @@ df.set_index(['Year'], inplace=True)
 
 #page configuration
 st.set_page_config(layout='centered')
-image = Image.open('/content/Add a heading.jpg')
-st.image(image)
+st.title('Forecasting kualitas udara')
 
 year = st.slider("Select number of Years",1,30,step = 1)
 
